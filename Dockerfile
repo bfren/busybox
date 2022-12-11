@@ -1,3 +1,8 @@
+FROM --platform=${BUILDPLATFORM} golang:alpine AS build
+
+ARG BUSYBOX
+ARG DEBIAN
+
 FROM debian:${DEBIAN} AS busybox
 
 RUN apt update && apt install -y bzip2 gcc make
