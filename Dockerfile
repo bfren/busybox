@@ -1,14 +1,13 @@
 ARG DEBIAN=11.5
 FROM debian:${DEBIAN} AS build
 
-ARG BUSYBOX=1.35.0
+RUN apt update && apt install -y bzip2 gcc make
 
 WORKDIR /tmp
-    
-RUN apt update && apt install -y bzip2 ca-certificates curl gcc make
 
-RUN curl -O https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 ; \
-    tar -xf busybox-${BUSYBOX}.tar.bz2 ; \
+ARG BUSYBOX=1.35.0
+ADD https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 /tmp
+RUN tar -xf busybox-${BUSYBOX}.tar.bz2 ; \
     cd busybox-${BUSYBOX} ; \
     make defconfig ; make ; \
     mv busybox /
