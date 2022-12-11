@@ -3,7 +3,7 @@ FROM --platform=${BUILDPLATFORM} golang:alpine AS build
 ARG BUSYBOX
 ARG DEBIAN
 
-FROM debian:${DEBIAN} AS busybox
+FROM debian:bookworm AS busybox
 
 RUN apt update && apt install -y bzip2 gcc make
 ADD https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 /tmp
