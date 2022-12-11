@@ -1,5 +1,3 @@
-FROM golang:alpine AS build
-
 ARG OS=debian:${DEBIAN}
 ARG BUSYBOX=busybox-${VERSION}
 
