@@ -1,16 +1,16 @@
-FROM --platform=${BUILDPLATFORM} golang:alpine AS build
+FROM golang:alpine AS base
 
-ARG BUSYBOX
-ARG DEBIAN
+ARG OS
+ARG VERSION
 
-FROM debian:bookworm AS busybox
+FROM debian:$OS AS build
 
 RUN apt update && apt install -y bzip2 gcc make
-ADD https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 /tmp
+ADD https://busybox.net/downloads/busybox-$VERSION.tar.bz2 /tmp
 
 WORKDIR /tmp
-RUN tar -xf busybox-${BUSYBOX}.tar.bz2
-RUN cd busybox-${BUSYBOX} ; make defconfig ; make
+RUN tar -xf busybox-$VERSION.tar.bz2
+RUN cd busybox-$VERSION ; make defconfig ; make
 
 FROM scratch as final
-COPY --from=busybox /tmp/busybox-${BUSYBOX}/busybox /
+COPY --from=build /tmp/busybox-$VERSION/busybox /
