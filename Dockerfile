@@ -3,6 +3,9 @@ ARG BUSYBOX=1.35.0
 
 FROM debian:${DEBIAN} AS build
 
+ARG DEBIAN
+ARG BUSYBOX
+
 WORKDIR /tmp
 
 RUN echo "Debian: ${DEBIAN}" && \
