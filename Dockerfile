@@ -1,8 +1,3 @@
-FROM golang:alpine AS base
-
-ARG OS
-ARG VERSION
-
 FROM debian:$OS AS build
 
 RUN apt update && apt install -y bzip2 gcc make
