@@ -5,15 +5,17 @@ FROM debian:${DEBIAN} AS build
 
 WORKDIR /tmp
 
-RUN echo "Debian: ${DEBIAN}" ; \
-    echo "Busybox: ${BUSYBOX}" ; \
-    apt update && apt install -y bzip2 gcc make
+ENV VERSION=busybox-${BUSYBOX}
 
-ADD https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 /tmp
+RUN echo "Debian: ${DEBIAN}" && \
+    echo "Busybox: ${VERSION}"
+RUN apt update && apt install -y bzip2 gcc make
 
-RUN tar -xf busybox-${BUSYBOX}.tar.bz2 ; \
-    cd busybox-${BUSYBOX} ; \
+ADD https://busybox.net/downloads/${VERSION}.tar.bz2 /tmp
+
+RUN tar -xf ${VERSION}.tar.bz2 ; \
+    cd ${VERSION} ; \
     make defconfig ; make
 
 FROM scratch as final
-COPY --from=build /tmp/busybox-${BUSYBOX}/busybox /
+COPY --from=build /tmp/${VERSION}/busybox /
