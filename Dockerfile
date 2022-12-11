@@ -1,14 +1,14 @@
 ARG OS=debian:${DEBIAN}
-ARG BUSYBOX=busybox-${VERSION}
+ARG VERSION=busybox-${BUSYBOX}
 
 FROM ${OS} AS build
 
 RUN apt update && apt install -y bzip2 gcc make
-ADD https://busybox.net/downloads/${BUSYBOX}.tar.bz2 /tmp
+ADD https://busybox.net/downloads/${VERSION}.tar.bz2 /tmp
 
 WORKDIR /tmp
-RUN tar -xf ${BUSYBOX}.tar.bz2
-RUN cd ${BUSYBOX} ; make defconfig ; make
+RUN tar -xf ${VERSION}.tar.bz2
+RUN cd ${VERSION} ; make defconfig ; make
 
 FROM scratch as final
-COPY --from=build /tmp/${BUSYBOX}/busybox /
+COPY --from=build /tmp/${VERSION}/busybox /
