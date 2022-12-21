@@ -1,7 +1,7 @@
 ARG DEBIAN=11.5
 FROM debian:${DEBIAN} AS build
 
-RUN apt update && apt install -y bzip2 gcc make
+RUN apt update && apt install -y bzip2 gcc make wget
 
 WORKDIR /tmp
 
