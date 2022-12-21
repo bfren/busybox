@@ -5,9 +5,9 @@ RUN apt update && apt install -y bzip2 gcc make wget
 
 ARG BUSYBOX=1.35.0 
 RUN cd /tmp ; \
-    wget -O busybox.tar.bz2 https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 ; \
-    tar -xf busybox.tar.bz2 ; \
-    cd busybox ; \
+    wget https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 ; \
+    tar -xf busybox-${BUSYBOX}.tar.bz2 ; \
+    cd busybox-${BUSYBOX} ; \
     make defconfig ; make ; \
     mv busybox /
 
