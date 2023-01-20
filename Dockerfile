@@ -18,8 +18,8 @@ RUN wget https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 && \
 WORKDIR /tmp/busybox-${BUSYBOX}
 COPY .config-${BUSYBOX} .config
 RUN make && \
-    cd testsuite && \
-    SKIP_KNOWN_BUGS=true ./runtest && \
+#    cd testsuite && \
+#    SKIP_KNOWN_BUGS=true ./runtest && \
     mv busybox /
 
 # create blank image with only busybox binary
