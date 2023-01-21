@@ -14,13 +14,13 @@ WORKDIR /tmp
 RUN wget https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 && \
     tar -xf busybox-${BUSYBOX}.tar.bz2
 
-# build and test busybox binary
+# build (and test) busybox binary
 WORKDIR /tmp/busybox-${BUSYBOX}
-COPY .config-${BUSYBOX} .config
-RUN make && \
-#    cd testsuite && \
-#    SKIP_KNOWN_BUGS=true ./runtest && \
-    mv busybox /
+RUN make defconfig && \
+    make
+#RUN cd testsuite && \
+#    SKIP_KNOWN_BUGS=true ./runtest
+RUN mv busybox /
 
 # create blank image with only busybox binary
 FROM scratch as final
