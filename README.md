@@ -26,5 +26,8 @@ FROM debian:${DEBIAN}-slim AS build
 # copy busybox executable to /bin
 COPY --from=busybox / /bin
 
+# run install
+RUN busybox --install
+
 # rest of Dockerfile
 ```
