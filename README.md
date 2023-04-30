@@ -14,11 +14,14 @@
 ## Usage
 
 ```Dockerfile
+# set Debian version
+ARG DEBIAN=11.6
+
 # use tags to load correct version of BusyBox for your Debian version
-FROM ghcr.io/bfren/busybox:1.35.0-debian11.6 AS busybox
+FROM ghcr.io/bfren/busybox:1.36.0-debian${DEBIAN} AS busybox
 
 # load the same the version of Debian
-FROM debian:11.6-slim AS build
+FROM debian:${DEBIAN}-slim AS build
 
 # copy busybox executable to /bin
 COPY --from=busybox / /bin
