@@ -13,6 +13,8 @@
 
 ## Usage
 
+You can find live examples in my [Debian Docker image](https://github.com/bfren/docker-debian).
+
 ```Dockerfile
 # set Debian version
 ARG DEBIAN=11.6
