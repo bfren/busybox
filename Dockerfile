@@ -1,4 +1,4 @@
-ARG DEBIAN=11.6
+ARG DEBIAN=11.7
 
 # use target Debian version as host
 FROM debian:${DEBIAN} AS build
@@ -9,7 +9,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt install -y bzip2 gcc make wget zip
 
 # download busybox source
-ARG BUSYBOX=1.36.0 
+ARG BUSYBOX=1.36.1 
 WORKDIR /tmp
 RUN wget https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 && \
     tar -xf busybox-${BUSYBOX}.tar.bz2
