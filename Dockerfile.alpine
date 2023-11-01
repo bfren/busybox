@@ -1,0 +1,23 @@
+ARG ALPINE=3.18
+
+# use target Alpine version as host
+FROM alpine:${ALPINE} AS build
+
+# install prerequisites
+RUN apk add alpine-sdk linux-headers openssl-dev>3 perl
+
+# download busybox source
+ARG BUSYBOX=1.36.1 
+WORKDIR /tmp
+RUN wget https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 && \
+    tar -xf busybox-${BUSYBOX}.tar.bz2
+
+# build busybox binary
+WORKDIR /tmp/busybox-${BUSYBOX}
+RUN make defconfig && \
+    make
+RUN mv busybox /
+
+# create blank image with only busybox binary
+FROM scratch as final
+COPY --from=build /busybox /
