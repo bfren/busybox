@@ -4,12 +4,12 @@
 
 ## Matrix
 
-| BusyBox     | 9 (stretch) | 10 (buster) | 11 (bullseye) | 12 (bookworm) | 13 (trixie) | testing (sid) |
-| ----------- | :---------: | :---------: | :-----------: | :-----------: | :---------: | :-----------: |
-| **1.33.2**  | &check;     | &check;     | &check;       | &check;       | &check;     | &check;       |
-| **1.34.1**  | &check;     | &check;     | &check;       | &check;       | &check;     | &check;       |
-| **1.35.0**  | &check;     | &check;     | &check;       | &check;       | &check;     | &check;       |
-| **1.36.1**  |             | &check;     | &check;       | &check;       | &check;     | &check;       |
+| BusyBox     | 10 (buster) | 11 (bullseye) | 12 (bookworm) | 13 (trixie) | testing (sid) |
+| ----------- | :---------: | :-----------: | :-----------: | :---------: | :-----------: |
+| **1.33.2**  | &check;     | &check;       | &check;       | &check;     | &check;       |
+| **1.34.1**  | &check;     | &check;       | &check;       | &check;     | &check;       |
+| **1.35.0**  | &check;     | &check;       | &check;       | &check;     | &check;       |
+| **1.36.1**  | &check;     | &check;       | &check;       | &check;     | &check;       |
 
 ## Usage
 
