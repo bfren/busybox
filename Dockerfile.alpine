@@ -1,4 +1,4 @@
-ARG ALPINE=3.18
+ARG ALPINE=3.19
 
 # use target Alpine version as host
 FROM alpine:${ALPINE} AS build
