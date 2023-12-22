@@ -6,7 +6,7 @@ FROM debian:${DEBIAN} AS build
 # install prerequisites
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
-    apt install -y bzip2 gcc make wget zip
+    apt install -y bzip2 gcc libc6-dev make wget zip
 
 # download busybox source
 ARG BUSYBOX=1.36.1 
