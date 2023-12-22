@@ -1,4 +1,4 @@
-ARG DEBIAN=11.7
+ARG DEBIAN=12.4
 
 # use target Debian version as host
 FROM debian:${DEBIAN} AS build
