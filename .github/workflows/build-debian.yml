@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        debian: [10.13, 11.8, 12.4, trixie]
+        debian: [10.13, 11.9, 12.5, trixie]
         busybox: [1.33.2, 1.34.1, 1.35.0, 1.36.1]
     steps:
       -
