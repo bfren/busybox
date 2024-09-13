@@ -1,6 +1,6 @@
 # BusyBox
 
-[BusyBox](https://busybox.net) compiled for different Alpine &amp; Debian versions.
+[BusyBox](https://busybox.net) compiled for different Alpine &amp; Debian versions, with default config (Alpine itself excludes certain applets by default).
 
 ## Matrix
 
