@@ -17,7 +17,7 @@ cp -R a b
 # download patches from Alpine
 mkdir patches && cd patches
 git init
-git remote add -f origin git://git.alpinelinux.org/aports.git
+git remote add -f origin https://gitlab.alpinelinux.org/alpine/aports.git
 git config core.sparseCheckout true
 echo "main/busybox/" >> .git/info/sparse-checkout
 git switch ${ALPINE_BRANCH}-stable
