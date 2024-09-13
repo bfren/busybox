@@ -23,5 +23,5 @@ RUN for P in ./patches/main/busybox/*.patch ; do patch -tu -p0 -d . < ${P} ; don
 RUN chmod +x ./build.sh && ./build.sh
 
 # create blank image with only busybox binary
-FROM scratch as final
+FROM scratch AS final
 COPY --from=build /busybox /
