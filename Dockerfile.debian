@@ -15,11 +15,12 @@ COPY ./build.sh .
 
 # download busybox source
 ARG BUSYBOX=1.36.1 
-RUN ./download.sh ${BUSYBOX}
+ARG ALPINE_BRANCH=3.20
+RUN ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
 
 # apply patches and build busybox
-ARG ALPINE_BRANCH=3.20
-RUN ./build.sh ${ALPINE_BRANCH}
+RUN for P in ./patches/main/busybox/*.patch ; do patch -tu -p0 -d . < ${P} ; done
+RUN ./build.sh
 
 # create blank image with only busybox binary
 FROM scratch as final
