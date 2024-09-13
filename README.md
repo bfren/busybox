@@ -4,15 +4,6 @@
 
 ## Matrix
 
-### Debian
-
-| BusyBox     | 10 (buster) | 11 (bullseye) | 12 (bookworm) |
-| ----------- | :---------: | :-----------: | :-----------: |
-| **1.33.2**  | &check;     | &check;       | &check;       |
-| **1.34.1**  | &check;     | &check;       | &check;       |
-| **1.35.0**  | &check;     | &check;       | &check;       |
-| **1.36.1**  | &check;     | &check;       | &check;       |
-
 ### Alpine
 
 | BusyBox     | 3.15        | 3.16          | 3.17          | 3.18          | 3.19          | 3.20          |
@@ -21,6 +12,15 @@
 | **1.34.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       |
 | **1.35.0**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       |
 | **1.36.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       |
+
+### Debian
+
+| BusyBox     | 10 (buster) | 11 (bullseye) | 12 (bookworm) |
+| ----------- | :---------: | :-----------: | :-----------: |
+| **1.33.2**  | &check;     | &check;       | &check;       |
+| **1.34.1**  | &check;     | &check;       | &check;       |
+| **1.35.0**  | &check;     | &check;       | &check;       |
+| **1.36.1**  | &check;     | &check;       | &check;       |
 
 ## Usage
 
