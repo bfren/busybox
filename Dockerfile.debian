@@ -8,31 +8,18 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
     apt install -y bzip2 gcc git libc6-dev make wget zip
 
+# copy script files
+WORKDIR /tmp
+COPY ./download.sh .
+COPY ./build.sh .
+
 # download busybox source
 ARG BUSYBOX=1.36.1 
-WORKDIR /tmp
-RUN wget https://busybox.net/downloads/busybox-${BUSYBOX}.tar.bz2 && \
-    tar -xf busybox-${BUSYBOX}.tar.bz2 && \
-    mv busybox-${BUSYBOX} a && \
-    cp -R a b
+RUN ./download.sh ${BUSYBOX}
 
-# download Alpine patch files
+# apply patches and build busybox
 ARG ALPINE_BRANCH=3.20
-RUN mkdir patches && cd patches && \
-    git init && \
-    git remote add -f origin git://git.alpinelinux.org/aports.git && \
-    git config core.sparseCheckout true && \
-    echo "main/busybox/" >> .git/info/sparse-checkout && \
-    git switch ${ALPINE_BRANCH}-stable
-
-# apply patches to busybox source
-RUN for P in ./patches/main/busybox/*.patch ; do patch -tu -p0 -d . < ${P} ; done
-
-# build busybox binary
-WORKDIR /tmp/b
-RUN make defconfig && \
-    make
-RUN mv busybox /
+RUN ./build.sh ${ALPINE_BRANCH}
 
 # create blank image with only busybox binary
 FROM scratch as final
