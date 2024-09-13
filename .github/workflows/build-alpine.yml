@@ -16,6 +16,12 @@ jobs:
         name: Checkout repository
         uses: actions/checkout@v4
       -
+        name: Read image version
+        uses: bfren/read-file@v2
+        with:
+          file: ./VERSION
+        id: version
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       -
@@ -36,11 +42,12 @@ jobs:
           file: ./Dockerfile.alpine
           build-args: |
             ALPINE=${{ matrix.alpine }}
+            ALPINE_BRANCH=3.20
             BUSYBOX=${{ matrix.busybox }}
           push: true
           platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64/v8
           tags: |
-            ghcr.io/bfren/busybox:${{ matrix.busybox }}-alpine${{ matrix.alpine }}
+            ghcr.io/bfren/busybox:${{ matrix.busybox }}-alpine${{ matrix.alpine }}-${{ steps.version.outputs.contents }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
