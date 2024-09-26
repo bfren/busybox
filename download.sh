@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 # script receives two arguments: the busybox version and Alpine branch
 BUSYBOX=${1}
