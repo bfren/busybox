@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         busybox: ["1.34.1", "1.36.1"]
-        debian: ["11.11", "12.7"]
+        debian: ["11.11", "12.8"]
     steps:
       -
         name: Checkout repository
