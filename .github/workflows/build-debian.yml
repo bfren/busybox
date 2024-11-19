@@ -41,7 +41,7 @@ jobs:
         with:
           file: ./Dockerfile.debian
           build-args: |
-            ALPINE_BRANCH=3.20
+            ALPINE_BRANCH=edge
             BUSYBOX=${{ matrix.busybox }}
             DEBIAN=${{ matrix.debian }}
           push: true
