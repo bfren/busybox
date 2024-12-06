@@ -1,4 +1,4 @@
-ARG ALPINE=3.20.3
+ARG ALPINE=3.21.0
 
 # use target Alpine version as host
 FROM alpine:${ALPINE} AS build
@@ -12,8 +12,8 @@ COPY ./download.sh .
 COPY ./build.sh .
 
 # download busybox source
-ARG BUSYBOX=1.36.1 
-ARG ALPINE_BRANCH=3.20
+ARG BUSYBOX=1.37.0
+ARG ALPINE_BRANCH=3.21
 RUN chmod +x ./download.sh && ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
 
 # apply patches and build busybox
