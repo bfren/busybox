@@ -10,7 +10,6 @@
 | ----------- | :---------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
 | **1.34.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
 | **1.36.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
-| **1.37.0**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
 
 ### Debian
 
