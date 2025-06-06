@@ -24,7 +24,7 @@ RUN chmod +x ./download.sh && ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
 
 # apply patches and build busybox
 RUN for P in ./patches/*.patch ; do patch -tu -p0 -d . < ${P} ; done
-RUN chmod +x ./build.sh && ./build.sh ${BUSYBOX}
+RUN chmod +x ./build.sh && ./build.sh
 
 # create blank image with only busybox binary
 FROM scratch AS final
