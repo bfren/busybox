@@ -13,9 +13,9 @@ RUN apk add alpine-sdk linux-headers openssl-dev>3 perl
 # copy script files
 WORKDIR /tmp
 COPY ./download.sh .
+COPY ./config.sh .
 COPY ./build.sh .
-COPY ./${BUSYBOX}/.config .
-COPY ./${BUSYBOX}/busybox-${BUSYBOX}.tar.bz2 .
+COPY ./src/busybox-${BUSYBOX}.tar.bz2 .
 
 # download busybox source
 RUN chmod +x ./download.sh && ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
