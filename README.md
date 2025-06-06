@@ -6,10 +6,10 @@
 
 ### Alpine
 
-| BusyBox     | 3.15        | 3.16          | 3.17          | 3.18          | 3.19          | 3.20          | 3.21          |
-| ----------- | :---------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
-| **1.34.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
-| **1.36.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
+| BusyBox     | 3.15        | 3.16          | 3.17          | 3.18          | 3.19          | 3.20          | 3.21          | 3.22          |
+| ----------- | :---------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
+| **1.34.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
+| **1.36.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
 
 ### Debian
 
@@ -25,7 +25,7 @@ You can find live examples in my [Debian Docker image](https://github.com/bfren/
 ```Dockerfile
 # set Debian version
 ARG DEBIAN=12.11
-ARG VERSION=250530
+ARG VERSION=250606
 
 # use tags to load correct version of BusyBox for your Debian version
 FROM ghcr.io/bfren/busybox:1.36.1-debian${DEBIAN}-${VERSION} AS busybox
