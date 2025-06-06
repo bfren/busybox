@@ -2,11 +2,11 @@
 
 set -eu
 
-# build busybox from patched source
+# build default config and modify
 cd b
 make defconfig
-chmod +x ./config.sh && ./config.sh
-make
+cp ../config.sh . && chmod +x ./config.sh && ./config.sh
 
-# move busybox binary to root
+# build busybox from patched source and move binary to root
+make
 mv busybox /
