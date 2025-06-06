@@ -13,7 +13,7 @@ COPY ./build.sh .
 
 # download busybox source
 ARG BUSYBOX=1.36.1
-ARG ALPINE_BRANCH=3.22
+ARG ALPINE_BRANCH=3.21
 RUN chmod +x ./download.sh && ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
 
 # apply patches and build busybox
