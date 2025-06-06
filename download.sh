@@ -13,13 +13,7 @@ tar -xf busybox-${BUSYBOX}.tar.bz2
 mv busybox-${BUSYBOX} a
 cp -R a b
 
-# download patches
+# download patches from Alpine
 mkdir patches
-
-# .. from Alpine
 git clone --depth 1 -b ${ALPINE_BRANCH}-stable https://gitlab.alpinelinux.org/alpine/aports.git
 mv aports/main/busybox/* patches/ && rm -rf aports
-
-# .. from Docker
-git clone --depth 1 https://github.com/docker-library/busybox.git
-mv busybox/.patches/* patches/ && rm -rf busybox
