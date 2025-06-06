@@ -3,6 +3,10 @@ ARG DEBIAN=12.11
 # use target Debian version as host
 FROM debian:${DEBIAN} AS build
 
+# define ARGS
+ARG BUSYBOX=1.37.0
+ARG ALPINE_BRANCH=3.22
+
 # install prerequisites
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
@@ -12,15 +16,15 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 WORKDIR /tmp
 COPY ./download.sh .
 COPY ./build.sh .
+COPY ./${BUSYBOX}/.config .
+COPY ./${BUSYBOX}/busybox-${BUSYBOX}.tar.bz2 .
 
 # download busybox source
-ARG BUSYBOX=1.36.1 
-ARG ALPINE_BRANCH=3.21
 RUN chmod +x ./download.sh && ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
 
 # apply patches and build busybox
-RUN for P in ./patches/main/busybox/*.patch ; do patch -tu -p0 -d . < ${P} ; done
-RUN chmod +x ./build.sh && ./build.sh
+RUN for P in ./patches/*.patch ; do patch -tu -p0 -d . < ${P} ; done
+RUN chmod +x ./build.sh && ./build.sh ${BUSYBOX}
 
 # create blank image with only busybox binary
 FROM scratch AS final

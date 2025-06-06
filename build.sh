@@ -4,7 +4,7 @@ set -eu
 
 # build busybox from patched source
 cd b
-make defconfig
+cp ../.config .
 make
 
 # move busybox binary to root
