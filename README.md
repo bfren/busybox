@@ -14,11 +14,11 @@
 
 ### Debian
 
-| BusyBox     | 11 (bullseye) | 12 (bookworm) |
-| ----------- | :-----------: | :-----------: |
-| **1.34.1**  | &check;       | &check;       |
-| **1.36.1**  | &check;       | &check;       |
-| **1.37.0**  | &check;       | &check;       |
+| BusyBox     | 11 (bullseye) | 12 (bookworm) | 13 (trixie) |
+| ----------- | :-----------: | :-----------: | :---------: |
+| **1.34.1**  | &check;       | &check;       | &check;     |
+| **1.36.1**  | &check;       | &check;       | &check;     |
+| **1.37.0**  | &check;       | &check;       | &check;     |
 
 ## Usage
 
