@@ -6,11 +6,11 @@
 
 ### Alpine
 
-| BusyBox     | 3.15        | 3.16          | 3.17          | 3.18          | 3.19          | 3.20          | 3.21          | 3.22          |
-| ----------- | :---------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
-| **1.34.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
-| **1.36.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
-| **1.37.0**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
+| BusyBox     | 3.15        | 3.16          | 3.17          | 3.18          | 3.19          | 3.20          | 3.21          | 3.22          | 3.23          |
+| ----------- | :---------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
+| **1.34.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
+| **1.36.1**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
+| **1.37.0**  | &check;     | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       | &check;       |
 
 ### Debian
 
