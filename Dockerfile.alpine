@@ -1,11 +1,11 @@
-ARG ALPINE=3.22.0
+ARG ALPINE=3.23.2
 
 # use target Alpine version as host
 FROM alpine:${ALPINE} AS build
 
 # define ARGS
 ARG BUSYBOX=1.37.0
-ARG ALPINE_BRANCH=3.22
+ARG ALPINE_BRANCH=3.23
 
 # install prerequisites
 RUN apk add alpine-sdk linux-headers openssl-dev>3 perl
