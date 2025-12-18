@@ -1,11 +1,11 @@
-ARG DEBIAN=12.11
+ARG DEBIAN=13.2
 
 # use target Debian version as host
 FROM debian:${DEBIAN} AS build
 
 # define ARGS
-ARG BUSYBOX=1.37.0
-ARG ALPINE_BRANCH=3.22
+ARG BUSYBOX=1.36.1
+ARG ALPINE_BRANCH=3.20
 
 # install prerequisites
 RUN export DEBIAN_FRONTEND=noninteractive && \

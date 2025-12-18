@@ -4,8 +4,8 @@ ARG ALPINE=3.23.2
 FROM alpine:${ALPINE} AS build
 
 # define ARGS
-ARG BUSYBOX=1.37.0
-ARG ALPINE_BRANCH=3.23
+ARG BUSYBOX=1.36.1
+ARG ALPINE_BRANCH=3.20
 
 # install prerequisites
 RUN apk add alpine-sdk linux-headers openssl-dev>3 perl
