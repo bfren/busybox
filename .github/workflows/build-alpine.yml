@@ -42,7 +42,7 @@ jobs:
       -
         name: Override for specific Busybox versions
         shell: bash
-        if: matrix.busybox == "1.37.0"
+        if: matrix.busybox == '1.37.0'
         run: |
           echo "ALPINE_BRANCH=3.23" >> $GITHUB_ENV
       -
