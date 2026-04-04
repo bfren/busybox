@@ -15,5 +15,5 @@ cp -R a b
 
 # download patches from Alpine
 mkdir patches
-git clone --depth 1 -b ${ALPINE_BRANCH}-stable https://gt.bcg.is/bcg/aports.git
+git clone --depth 1 -b ${ALPINE_BRANCH}-stable https://gt.bfn.sh/bcg/aports.git
 mv aports/main/busybox/* patches/ && rm -rf aports
