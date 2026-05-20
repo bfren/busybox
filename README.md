@@ -24,8 +24,8 @@ You can find live examples in my [Debian Docker image](https://github.com/bfren/
 
 ```Dockerfile
 # set Debian version
-ARG DEBIAN=13.2
-ARG VERSION=251218
+ARG DEBIAN=13.5
+ARG VERSION=260128
 
 # use tags to load correct version of BusyBox for your Debian version
 FROM ghcr.io/bfren/busybox:1.36.1-debian${DEBIAN}-${VERSION} AS busybox
