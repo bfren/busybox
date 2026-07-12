@@ -38,13 +38,13 @@ jobs:
         name: Set default Alpine branch for patches
         shell: bash
         run: |
-          echo "ALPINE_BRANCH=3.20" >> $GITHUB_ENV
+          echo "ALPINE_BRANCH=3.20-stable" >> $GITHUB_ENV
       -
         name: Override for specific Busybox versions
         shell: bash
         if: matrix.busybox == '1.37.0'
         run: |
-          echo "ALPINE_BRANCH=3.24" >> $GITHUB_ENV
+          echo "ALPINE_BRANCH=3.24-stable" >> $GITHUB_ENV
       -
         name: Override for specific Busybox versions
         shell: bash
