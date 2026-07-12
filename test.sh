@@ -1,8 +1,8 @@
 #!/bin/sh
 
-ALPINE=${1:-3.23.2}
-ALPINE_BRANCH=${2:-3.20}
-BUSYBOX=${3:-1.36.1}
+ALPINE=${1:-3.24.1}
+ALPINE_BRANCH=${2:-3.24-stable}
+BUSYBOX=${3:-1.37.0}
 
 docker buildx build \
     -f Dockerfile.alpine \
