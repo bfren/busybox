@@ -50,7 +50,7 @@ jobs:
         shell: bash
         if: matrix.busybox == '1.38.0'
         run: |
-          echo "ALPINE_BRANCH=edge" >> $GITHUB_ENV
+          echo "ALPINE_BRANCH=master" >> $GITHUB_ENV
       -
         name: Build and push
         id: docker_build
