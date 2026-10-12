@@ -2,10 +2,13 @@
 
 set -eu
 
-# build default config and modify
+# verify patches
+./verify.sh
+
+# build default config
 cd busybox
 make defconfig
-cp ../config.sh . && chmod +x ./config.sh && ./config.sh
+cp ../config.sh . && ./config.sh
 
 # build busybox from patched source
 make
