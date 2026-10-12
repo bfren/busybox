@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ALPINE=${1:-3.24.1}
+ALPINE=${1:-3.24.2}
 ALPINE_BRANCH=${2:-3.24-stable}
 BUSYBOX=${3:-1.37.0}
 
