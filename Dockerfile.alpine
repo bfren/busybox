@@ -1,28 +1,25 @@
-ARG ALPINE=3.23.3
+ARG ALPINE=3.24.2
 
 # use target Alpine version as host
 FROM alpine:${ALPINE} AS build
 
 # define ARGS
-ARG BUSYBOX=1.36.1
-ARG ALPINE_BRANCH=3.20
+ARG BUSYBOX=1.37.0
+ARG ALPINE_BRANCH=3.24-stable
 
 # install prerequisites
 RUN apk add alpine-sdk linux-headers openssl-dev>3 perl
 
 # copy script files
 WORKDIR /tmp
-COPY ./download.sh .
-COPY ./config.sh .
-COPY ./build.sh .
+COPY ./download.sh ./patch.sh ./config.sh ./build.sh ./
 COPY ./src/busybox-${BUSYBOX}.tar.bz2 .
+RUN chmod +x ./*.sh
 
-# download busybox source
-RUN chmod +x ./download.sh && ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
-
-# apply patches and build busybox
-RUN for P in ./patches/*.patch ; do patch -tu -p0 -d . < ${P} ; done
-RUN chmod +x ./build.sh && ./build.sh
+# download source and patches, apply patches, build and verify
+RUN ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
+RUN ./patch.sh
+RUN ./build.sh
 
 # create blank image with only busybox binary
 FROM scratch AS final

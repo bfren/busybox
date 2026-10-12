@@ -1,30 +1,27 @@
-ARG DEBIAN=13.5
+ARG DEBIAN=13.7
 
 # use target Debian version as host
 FROM debian:${DEBIAN} AS build
 
 # define ARGS
-ARG BUSYBOX=1.36.1
-ARG ALPINE_BRANCH=3.20
+ARG BUSYBOX=1.37.0
+ARG ALPINE_BRANCH=3.24-stable
 
 # install prerequisites
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
-    apt install -y bzip2 gcc git libc6-dev make wget zip
+    apt install -y bzip2 gcc git libc6-dev make patch wget zip
 
 # copy script files
 WORKDIR /tmp
-COPY ./download.sh .
-COPY ./config.sh .
-COPY ./build.sh .
+COPY ./download.sh ./patch.sh ./config.sh ./build.sh ./
 COPY ./src/busybox-${BUSYBOX}.tar.bz2 .
+RUN chmod +x ./*.sh
 
-# download busybox source
-RUN chmod +x ./download.sh && ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
-
-# apply patches and build busybox
-RUN for P in ./patches/*.patch ; do patch -tu -p0 -d . < ${P} ; done
-RUN chmod +x ./build.sh && ./build.sh
+# download source and patches, apply patches, build and verify
+RUN ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
+RUN ./patch.sh
+RUN ./build.sh
 
 # create blank image with only busybox binary
 FROM scratch AS final

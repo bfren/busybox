@@ -8,12 +8,9 @@ ALPINE_BRANCH=${2}
 
 # extract source
 tar -xf busybox-${BUSYBOX}.tar.bz2
+mv busybox-${BUSYBOX} busybox
 
-# create 'a' and 'b' directories for patching
-mv busybox-${BUSYBOX} a
-cp -R a b
-
-# download patches from Alpine
-mkdir patches
+# download patches (and APKBUILD) from Alpine
 git clone --depth 1 --branch ${ALPINE_BRANCH} --single-branch https://gt.bfn.sh/bcg/aports.git
+mkdir patches
 mv aports/main/busybox/* patches/ && rm -rf aports

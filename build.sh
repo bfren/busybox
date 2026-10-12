@@ -3,10 +3,12 @@
 set -eu
 
 # build default config and modify
-cd b
+cd busybox
 make defconfig
 cp ../config.sh . && chmod +x ./config.sh && ./config.sh
 
-# build busybox from patched source and move binary to root
+# build busybox from patched source
 make
+
+# move binary to root
 mv busybox /
