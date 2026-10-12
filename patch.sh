@@ -2,10 +2,8 @@
 
 set -eu
 
-# apply Alpine's patches to the busybox source, in the order listed in APKBUILD source=
-cd busybox
-
-PATCHES=$(awk '
+# list patches in the order given by APKBUILD source=
+ALL=$(awk '
     /^source="/ { f = 1; sub(/^source="/, "") }
     f {
         done = index($0, "\"") > 0
@@ -17,11 +15,25 @@ PATCHES=$(awk '
         }
         if (done) f = 0
     }
-' ../patches/APKBUILD)
+' patches/APKBUILD)
 
-[ -n "${PATCHES}" ] || { echo "No patches found in APKBUILD" >&2; exit 1; }
+[ -n "${ALL}" ] || { echo "No patches found in APKBUILD" >&2; exit 1; }
 
-for P in ${PATCHES} ; do
+# remove excluded patches (matched without the NNNN- prefix), recording the rest as the series
+EXCLUDE=$(grep -v -e '^#' -e '^[[:space:]]*$' patches.exclude || true)
+: > patches/series
+for P in ${ALL} ; do
+    NAME=${P#[0-9][0-9][0-9][0-9]-}
+    if printf '%s\n' "${EXCLUDE}" | grep -qxF "${NAME}" ; then
+        echo "Excluding ${P}"
+    else
+        echo "${P}" >> patches/series
+    fi
+done
+
+# apply patches
+cd busybox
+for P in $(cat ../patches/series) ; do
     echo "Applying ${P}"
     patch -p1 -N --no-backup-if-mismatch < "../patches/${P}"
 done

@@ -1,0 +1,18 @@
+# Alpine packaging / policy patches - matched by name without the NNNN- prefix,
+# because Alpine renumbers patches between branches
+
+# Alpine-specific build setup
+ash-exec-busybox.static.patch
+Avoid-redefined-warnings-when-buiding-with-utmps.patch
+Hackfix-to-disable-HW-acceleration-for-MD5-SHA1-on-x.patch
+
+# applet install locations
+app-location-for-cpio-vi-and-lspci.patch
+blkdiscard-ship-link-to-sbin-instead-of-usr-bin.patch
+Install-lsblk-to-bin-instead-of-usr-bin.patch
+nologin-Install-applet-to-sbin-instead-of-usr-sbin.patch
+
+# changed defaults
+adduser-default-to-sbin-nologin-as-shell-for-system-.patch
+ping-make-ping-work-without-root-privileges.patch
+udhcpc-set-default-discover-retries-to-5.patch

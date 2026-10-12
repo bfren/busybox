@@ -14,7 +14,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 
 # copy script files
 WORKDIR /tmp
-COPY ./download.sh ./patch.sh ./config.sh ./build.sh ./
+COPY ./download.sh ./patch.sh ./patches.exclude ./config.sh ./verify.sh ./build.sh ./
 COPY ./src/busybox-${BUSYBOX}.tar.bz2 .
 RUN chmod +x ./*.sh
 
