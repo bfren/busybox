@@ -35,30 +35,12 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.QUAY_TOKEN }}
       -
-        name: Set default Alpine branch for patches
-        shell: bash
-        run: |
-          echo "ALPINE_BRANCH=3.20-stable" >> $GITHUB_ENV
-      -
-        name: Override for specific Busybox versions
-        shell: bash
-        if: matrix.busybox == '1.37.0'
-        run: |
-          echo "ALPINE_BRANCH=3.24-stable" >> $GITHUB_ENV
-      -
-        name: Override for specific Busybox versions
-        shell: bash
-        if: matrix.busybox == '1.38.0'
-        run: |
-          echo "ALPINE_BRANCH=master" >> $GITHUB_ENV
-      -
         name: Build and push
         id: docker_build
         uses: docker/build-push-action@v7
         with:
           file: ./Dockerfile.debian
           build-args: |
-            ALPINE_BRANCH=${{ env.ALPINE_BRANCH }}
             BUSYBOX=${{ matrix.busybox }}
             DEBIAN=${{ matrix.debian }}
           push: true

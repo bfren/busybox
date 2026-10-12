@@ -2,9 +2,17 @@
 
 set -eu
 
-# script receives two arguments: the busybox version and Alpine branch
+# script receives one argument: the busybox version
 BUSYBOX=${1}
-ALPINE_BRANCH=${2}
+
+# Alpine branch whose patches match this busybox version
+case "${BUSYBOX}" in
+    1.36.1) ALPINE_BRANCH=3.20-stable ;;
+    1.37.0) ALPINE_BRANCH=3.24-stable ;;
+    1.38.0) ALPINE_BRANCH=master ;;
+    *) echo "No Alpine patch branch defined for BusyBox ${BUSYBOX}" >&2; exit 1 ;;
+esac
+echo "Using Alpine ${ALPINE_BRANCH} patches for BusyBox ${BUSYBOX}"
 
 # extract source
 tar -xf busybox-${BUSYBOX}.tar.bz2

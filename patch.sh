@@ -20,7 +20,7 @@ ALL=$(awk '
 [ -n "${ALL}" ] || { echo "No patches found in APKBUILD" >&2; exit 1; }
 
 # remove excluded patches (matched without the NNNN- prefix), recording the rest as the series
-EXCLUDE=$(grep -v -e '^#' -e '^[[:space:]]*$' patches.exclude || true)
+EXCLUDE=$(tr -d '\r' < patches.exclude | grep -v -e '^#' -e '^[[:space:]]*$' || true)
 : > patches/series
 for P in ${ALL} ; do
     NAME=${P#[0-9][0-9][0-9][0-9]-}
