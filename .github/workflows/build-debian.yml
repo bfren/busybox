@@ -46,7 +46,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64/v8
           tags: |
-            quay.io/bfren/busybox:${{ matrix.busybox }}-debian${{ matrix.debian }}-${{ steps.version.outputs.contents }}
+            quay.io/bfren-bin/busybox:${{ matrix.busybox }}-debian${{ matrix.debian }}-${{ steps.version.outputs.contents }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

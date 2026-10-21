@@ -41,6 +41,15 @@ BusyBox 1.37.0 and 1.38.0 are marked as 'unstable' by BusyBox, and the Alpine pa
 | **1.37.0**  | &check;       | &check;       | &check;     |
 | **1.38.0**  | &check;       | &check;       | &check;     |
 
+## Adding a release
+
+1. Download `busybox-X.Y.Z.tar.bz2` from [busybox.net](https://busybox.net/downloads/) into [src](src).
+2. Add the version to the `case` in [download.sh](download.sh), with the Alpine branch whose patches match it, and
+   check [patches.exclude](patches.exclude) still covers Alpine's packaging patches.
+3. Add the version to the `busybox` matrix in both [workflows](.github/workflows), and to the tables above.
+4. Set [VERSION](VERSION) to today's date (`yymmdd`), run `./test.sh <alpine> <busybox>`, then run the
+   `build-alpine` and `build-debian` workflows.
+
 ## Usage
 
 You can find live examples in my [Alpine Docker image](https://github.com/bfren/docker-alpine) and [Debian Docker image](https://github.com/bfren/docker-debian).
@@ -51,7 +60,7 @@ ARG DEBIAN=13.7
 ARG VERSION=261012
 
 # use tags to load correct version of BusyBox for your Debian version
-FROM quay.io/bfren/busybox:1.37.0-debian${DEBIAN}-${VERSION} AS busybox
+FROM quay.io/bfren-bin/busybox:1.37.0-debian${DEBIAN}-${VERSION} AS busybox
 
 # load the same version of Debian
 FROM debian:${DEBIAN}-slim AS build
