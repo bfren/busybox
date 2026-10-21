@@ -7,7 +7,7 @@ FROM alpine:${ALPINE} AS build
 ARG BUSYBOX=1.37.0
 
 # install prerequisites
-RUN apk add alpine-sdk linux-headers openssl-dev>3 perl
+RUN apk add alpine-sdk linux-headers "openssl-dev>3" perl
 
 # copy script files
 WORKDIR /tmp
