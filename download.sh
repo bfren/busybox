@@ -19,6 +19,6 @@ tar -xf busybox-${BUSYBOX}.tar.bz2
 mv busybox-${BUSYBOX} busybox
 
 # download patches (and APKBUILD) from Alpine
-git clone --depth 1 --branch ${ALPINE_BRANCH} --single-branch https://gt.bfn.sh/bcg/aports.git
+git clone --depth 1 --branch ${ALPINE_BRANCH} --single-branch https://git.bfren.dev/bcg/aports.git
 mkdir patches
 mv aports/main/busybox/* patches/ && rm -rf aports
