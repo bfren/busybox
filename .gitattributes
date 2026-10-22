@@ -1,0 +1,2 @@
+# vendored patches must be byte-for-byte as Alpine ships them - never convert line endings
+patches/** -text

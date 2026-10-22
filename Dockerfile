@@ -8,11 +8,12 @@ ARG BUSYBOX=1.37.0
 RUN apk add alpine-sdk linux-headers perl
 
 WORKDIR /tmp
-COPY ./download.sh ./patch.sh ./patches.exclude ./config.sh ./verify.sh ./build.sh ./
+COPY ./extract.sh ./patch.sh ./config.sh ./verify.sh ./build.sh ./
 COPY ./src/busybox-${BUSYBOX}.tar.bz2 .
+COPY ./patches/${BUSYBOX}/ ./patches/
 RUN chmod +x ./*.sh
 
-RUN ./download.sh ${BUSYBOX}
+RUN ./extract.sh ${BUSYBOX}
 RUN ./patch.sh
 RUN ./build.sh
 

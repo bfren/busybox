@@ -1,0 +1,5 @@
+repository: https://github.com/alpinelinux/aports.git
+branch: 3.24-stable
+commit: 19183ccb0dbe746b94866f2873583f530ca7887e
+date: 2026-10-22
+package: busybox-1.37.0-r31
