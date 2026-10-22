@@ -1,25 +1,21 @@
+# BusyBox is statically linked against musl, so the Alpine version used to build it does not matter:
+# the same binary is used by every Alpine and Debian image
 ARG ALPINE=3.24.2
-
-# use target Alpine version as host
 FROM alpine:${ALPINE} AS build
 
-# define ARGS
 ARG BUSYBOX=1.37.0
 
-# install prerequisites
-RUN apk add alpine-sdk linux-headers "openssl-dev>3" perl
+RUN apk add alpine-sdk linux-headers perl
 
-# copy script files
 WORKDIR /tmp
 COPY ./download.sh ./patch.sh ./patches.exclude ./config.sh ./verify.sh ./build.sh ./
 COPY ./src/busybox-${BUSYBOX}.tar.bz2 .
 RUN chmod +x ./*.sh
 
-# download source and patches, apply patches, build and verify
-RUN ./download.sh ${BUSYBOX} ${ALPINE_BRANCH}
+RUN ./download.sh ${BUSYBOX}
 RUN ./patch.sh
 RUN ./build.sh
 
-# create blank image with only busybox binary
 FROM scratch AS final
+
 COPY --from=build /busybox /
