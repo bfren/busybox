@@ -1,6 +1,6 @@
 # BusyBox is statically linked against musl, so the Alpine version used to build it does not matter:
 # the same binary is used by every Alpine and Debian image
-ARG ALPINE=3.24.2
+ARG ALPINE=3.24.3
 FROM alpine:${ALPINE} AS build
 
 ARG BUSYBOX=1.37.0
