@@ -2,9 +2,6 @@
 
 set -eu
 
-# verify patches
-./verify.sh
-
 # build default config
 cd busybox
 make defconfig

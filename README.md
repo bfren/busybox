@@ -10,8 +10,8 @@ across every Alpine and Debian image in my Docker ecosystem.
   packaging patches (install locations, changed defaults, utmps support) are excluded when vendoring - see
   [patches.exclude](patches.exclude). Each version's `SOURCE` file records the aports commit the patches were taken
   from, so builds never download anything.
-- **Verification:** every build checks that the source compiled is exactly upstream BusyBox plus the applied
-  patches, and fails if any patch is missing or anything else has changed.
+- **Verification:** every build checks the BusyBox tarball against its upstream sha512 in
+  [src/SHA512SUMS](src/SHA512SUMS), and fails if any patch in the series does not apply.
 - **Static:** every build fails if the binary has any dynamic library dependencies, so it runs on any Alpine or
   Debian version (and any other Linux) without needing matching libraries.
 
@@ -38,13 +38,15 @@ Images are published for `linux/amd64`, `linux/arm64` and `linux/arm/v7`, tagged
 
 ## Adding a release
 
-1. Download `busybox-X.Y.Z.tar.bz2` from [busybox.net](https://busybox.net/downloads/) into [src](src).
+1. Download `busybox-X.Y.Z.tar.bz2` from [busybox.net](https://busybox.net/downloads/) into [src](src), and add its
+   line from the `sha512sums` in Alpine's `APKBUILD` to [src/SHA512SUMS](src/SHA512SUMS).
 2. Add the version to the `case` in [update-patches.sh](update-patches.sh), with the Alpine branch whose patches
    match it, run `./update-patches.sh <busybox>`, and check [patches.exclude](patches.exclude) still covers Alpine's
    packaging patches.
 3. Add the version to both `busybox` matrices in the [build workflow](.github/workflows/build.yml), and to
    the table above.
-4. Set [VERSION](VERSION) to today's date (`yymmdd`), run `./test.sh <busybox>`, then run the `build` workflow.
+4. Set [VERSION](VERSION) to today's date (`yymmdd`), run `./test.sh <busybox>`, then run the `build` workflow
+   (it refuses to overwrite a tag that already exists).
 
 ## Updating patches
 

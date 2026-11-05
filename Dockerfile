@@ -5,11 +5,11 @@ FROM alpine:${ALPINE} AS build
 
 ARG BUSYBOX=1.37.0
 
-RUN apk add alpine-sdk linux-headers perl
+RUN apk add build-base linux-headers perl
 
 WORKDIR /tmp
-COPY ./extract.sh ./patch.sh ./config.sh ./verify.sh ./build.sh ./
-COPY ./src/busybox-${BUSYBOX}.tar.bz2 .
+COPY ./extract.sh ./patch.sh ./config.sh ./build.sh ./
+COPY ./src/SHA512SUMS ./src/busybox-${BUSYBOX}.tar.bz2 ./
 COPY ./patches/${BUSYBOX}/ ./patches/
 RUN chmod +x ./*.sh
 

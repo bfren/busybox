@@ -107,6 +107,8 @@ jobs:
           count=$(ls | wc -l)
           [ "${count}" -eq 3 ] || { echo "Expected 3 platform digests, found ${count} - not creating the image" ; exit 1 ; }
           tag=${IMAGE}:${{ matrix.busybox }}-${{ steps.version.outputs.contents }}
+          # published tags must never change under the images that pin them
+          docker buildx imagetools inspect ${tag} >/dev/null 2>&1 && { echo "${tag} already exists - bump VERSION" ; exit 1 ; }
           docker buildx imagetools create -t ${tag} $(printf "${IMAGE}@sha256:%s " *)
           docker buildx imagetools inspect ${tag}
         shell: bash

@@ -8,3 +8,4 @@ for P in $(cat ../patches/series) ; do
     echo "Applying ${P}"
     patch -p1 -N --no-backup-if-mismatch < "../patches/${P}"
 done
+echo "Applied $(wc -l < ../patches/series) patches"
