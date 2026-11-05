@@ -1,0 +1,13 @@
+# BusyBox test suite failures caused by the build environment, not by BusyBox or the patches.
+# The build fails on any test failure not listed here. One test name per line, as printed after "FAIL: ".
+
+# musl's date parsing does not accept a 'Z' suffix - Alpine's own busybox fails this too
+date-timezone
+
+# docker build has no loop devices and cannot mount or unmount
+mount -o remount,mand
+mount bind+rshared
+mount RO loop
+
+# /bin/false in the build image is a link to Alpine's busybox, so '-a qwerty' runs a missing applet (127, not 1)
+start-stop-daemon with both -x and -a

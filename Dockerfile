@@ -4,11 +4,13 @@ ARG ALPINE=3.24.3
 FROM alpine:${ALPINE} AS build
 
 ARG BUSYBOX=1.37.0
+ARG CHECK=true
 
-RUN apk add build-base linux-headers perl
+# zip is needed by the BusyBox test suite
+RUN apk add build-base linux-headers perl zip
 
 WORKDIR /tmp
-COPY ./extract.sh ./patch.sh ./config.sh ./build.sh ./
+COPY ./extract.sh ./patch.sh ./config.sh ./build.sh ./check.known-failures ./
 COPY ./src/SHA512SUMS ./src/busybox-${BUSYBOX}.tar.bz2 ./
 COPY ./patches/${BUSYBOX}/ ./patches/
 RUN chmod +x ./*.sh

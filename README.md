@@ -12,6 +12,8 @@ across every Alpine and Debian image in my Docker ecosystem.
   from, so builds never download anything.
 - **Verification:** every build checks the BusyBox tarball against its upstream sha512 in
   [src/SHA512SUMS](src/SHA512SUMS), and fails if any patch in the series does not apply.
+- **Tests:** every amd64 and arm64 build runs the BusyBox test suite (as Alpine does) and fails on any failure not
+  listed, with its reason, in [check.known-failures](check.known-failures). arm/v7 skips it, as it is built under QEMU.
 - **Static:** every build fails if the binary has any dynamic library dependencies, so it runs on any Alpine or
   Debian version (and any other Linux) without needing matching libraries.
 

@@ -47,6 +47,7 @@ jobs:
         with:
           build-args: |
             BUSYBOX=${{ matrix.busybox }}
+            CHECK=${{ !matrix.qemu }}
           platforms: ${{ matrix.platform }}
           outputs: type=image,"name=${{ env.IMAGE }}",push-by-digest=true,name-canonical=true,push=true
       -
