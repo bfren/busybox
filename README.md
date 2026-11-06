@@ -62,7 +62,7 @@ You can find live examples in my [Alpine Docker image](https://github.com/bfren/
 
 ```Dockerfile
 # load BusyBox
-FROM quay.io/bfren-bin/busybox:1.37.0-261105 AS busybox
+FROM quay.io/bfren-bin/busybox:1.37.0-261106 AS busybox
 
 # use any version of Alpine or Debian
 FROM debian:13.7-slim AS build
