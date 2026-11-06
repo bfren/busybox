@@ -17,22 +17,33 @@ across every Alpine and Debian image in my Docker ecosystem.
 - **Static:** every build fails if the binary has any dynamic library dependencies, so it runs on any Alpine or
   Debian version (and any other Linux) without needing matching libraries.
 
+## Matrix
+
 | BusyBox    | Alpine patches from |
 | ---------- | ------------------- |
 | **1.36.1** | `3.20-stable`       |
 | **1.37.0** | `3.24-stable`       |
 | **1.38.0** | `master`            |
 
-BusyBox 1.37.0 and 1.38.0 are marked as 'unstable' by BusyBox, and the Alpine patches for 1.38.0 come from the master branch for edge builds.
+Every image is built for `linux/amd64`, `linux/arm64` and `linux/arm/v7`.
+
+BusyBox 1.37.0 and 1.38.0 are marked as 'unstable' by BusyBox, and the Alpine patches for 1.38.0 come from the
+`master` branch for edge builds.
 
 > [!NOTE]
 > Before version `261012`, Alpine patches were downloaded but never applied to the compiled source, so
 > earlier images are unpatched upstream BusyBox. Rebuild against `261012` or later to pick up the fixes.
 
-## Images
+## Tags
 
-Images are published for `linux/amd64`, `linux/arm64` and `linux/arm/v7`, tagged `<busybox>-<version>`, e.g.
-`quay.io/bfren-bin/busybox:1.37.0-261022`.
+Images are published to `quay.io/bfren-bin/busybox`:
+
+| Tag               | Example           |
+| ----------------- | ----------------- |
+| `BUSYBOX-VERSION` | `1.37.0-261106.2` |
+
+`VERSION` is the build date (`yymmdd`) in [VERSION](VERSION) - pin it to get exactly the same binary every
+time. Builds from any branch other than `main` add `-dev` to every tag.
 
 > [!NOTE]
 > Before version `261022`, BusyBox was dynamically linked and built separately for each Alpine and Debian version,
@@ -47,8 +58,10 @@ Images are published for `linux/amd64`, `linux/arm64` and `linux/arm/v7`, tagged
    packaging patches.
 3. Add the version to the `busybox` matrix in the [build workflow](.github/workflows/build.yml), and to
    the table above.
-4. Set [VERSION](VERSION) to today's date (`yymmdd`), run `./test.sh <busybox>`, then run the `build` workflow
-   (it refuses to overwrite a tag that already exists).
+4. Set [VERSION](VERSION) to today's date (`yymmdd`, or `yymmdd.2`, `.3` and so on for another release that day)
+   and run `./test.sh <busybox>`.
+5. Push the branch, which builds `-dev` tags to test with, then merge into `main`, which builds the release (it
+   refuses to overwrite a tag that already exists).
 
 ## Updating patches
 
@@ -58,11 +71,12 @@ and rebuild as above.
 
 ## Usage
 
-You can find live examples in my [Alpine Docker image](https://github.com/bfren/docker-alpine) and [Debian Docker image](https://github.com/bfren/docker-debian).
+You can find live examples in my [Alpine](https://github.com/bfren/docker-alpine) and
+[Debian](https://github.com/bfren/docker-debian) Docker images.
 
 ```Dockerfile
 # load BusyBox
-FROM quay.io/bfren-bin/busybox:1.37.0-261106 AS busybox
+FROM quay.io/bfren-bin/busybox:1.37.0-261106.2 AS busybox
 
 # use any version of Alpine or Debian
 FROM debian:13.7-slim AS build
@@ -83,3 +97,7 @@ The build scripts in this repository are released under the [MIT licence](https:
 BusyBox is licensed under the [GNU General Public License v2 only](https://busybox.net/license.html).
 The BusyBox source in [src](src), the Alpine patches applied to it, and the binaries in the published
 images are all covered by that licence.
+
+## Copyright
+
+> Copyright (c) 2022-2026 bfren (unless otherwise stated)
