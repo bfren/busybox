@@ -4,7 +4,9 @@ ARG ALPINE=3.24.3
 FROM alpine:${ALPINE} AS build
 
 ARG BUSYBOX=1.37.0
-ARG CHECK=true
+# NATIVE is false when built using QEMU, which cannot run the test suite reliably
+ARG NATIVE=true
+ARG CHECK=${NATIVE}
 
 # zip is needed by the BusyBox test suite
 RUN apk add build-base linux-headers perl zip

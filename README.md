@@ -45,7 +45,7 @@ Images are published for `linux/amd64`, `linux/arm64` and `linux/arm/v7`, tagged
 2. Add the version to the `case` in [update-patches.sh](update-patches.sh), with the Alpine branch whose patches
    match it, run `./update-patches.sh <busybox>`, and check [patches.exclude](patches.exclude) still covers Alpine's
    packaging patches.
-3. Add the version to both `busybox` matrices in the [build workflow](.github/workflows/build.yml), and to
+3. Add the version to the `busybox` matrix in the [build workflow](.github/workflows/build.yml), and to
    the table above.
 4. Set [VERSION](VERSION) to today's date (`yymmdd`), run `./test.sh <busybox>`, then run the `build` workflow
    (it refuses to overwrite a tag that already exists).
