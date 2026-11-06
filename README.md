@@ -42,8 +42,9 @@ Images are published to `quay.io/bfren-bin/busybox`:
 | ----------------- | ----------------- |
 | `BUSYBOX-VERSION` | `1.37.0-261106.2` |
 
-`VERSION` is the build date (`yymmdd`) in [VERSION](VERSION) - pin it to get exactly the same binary every
-time. Builds from any branch other than `main` add `-dev` to every tag.
+`VERSION` is the build date (`yymmdd`) in [VERSION](VERSION) - pin it to get exactly the same binary every time.
+Builds from any branch other than `main` add `-dev` to every tag. Each release is also a GitHub release, `v<VERSION>`,
+on the commit that built it.
 
 > [!NOTE]
 > Before version `261022`, BusyBox was dynamically linked and built separately for each Alpine and Debian version,
