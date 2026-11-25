@@ -38,9 +38,9 @@ BusyBox 1.37.0 and 1.38.0 are marked as 'unstable' by BusyBox, and the Alpine pa
 
 Images are published to `quay.io/bfren-bin/busybox`:
 
-| Tag               | Example           |
-| ----------------- | ----------------- |
-| `BUSYBOX-VERSION` | `1.37.0-261106.3` |
+| Tag               | Example         |
+| ----------------- | --------------- |
+| `BUSYBOX-VERSION` | `1.37.0-261125` |
 
 `VERSION` is the build date (`yymmdd`) in [VERSION](VERSION) - pin it to get exactly the same binary every time.
 Builds from any branch other than `main` add `-dev` to every tag. Each release is also a GitHub release, `v<VERSION>`,
@@ -77,7 +77,7 @@ You can find live examples in my [Alpine](https://github.com/bfren/docker-alpine
 
 ```Dockerfile
 # load BusyBox
-FROM quay.io/bfren-bin/busybox:1.37.0-261106.3 AS busybox
+FROM quay.io/bfren-bin/busybox:1.37.0-261125 AS busybox
 
 # use any version of Alpine or Debian
 FROM debian:13.7-slim AS build
